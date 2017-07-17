@@ -12,9 +12,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
-					<img src="https://image.tmdb.org/t/p/w300/imekS7f1OuHyUP2LAiTEM0zBzUz.jpg" alt="">
+					<img src="https://image.tmdb.org/t/p/w300/<%= movie.image_url %>" alt="<%= movie.title %>">
 				</div>
-				<div class="col-sm-8"></div>
+				<div class="col-sm-8">
+					<h2><%= movie.title %></h2>
+					<h3><%= movie.release_date %></h3>
+					<p><%= movie.description %></p>
+				</div>
 			</div>
 		</div>
 	</body>

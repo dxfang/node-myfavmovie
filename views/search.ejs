@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>My FavMovie</title>
+		<title>Search</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     	<!-- <link rel="stylesheet" href="style.css"> -->
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -10,21 +10,11 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="row">
-				<form class="form-horizontal" action="/search" method="post">
-					<div class="form-group col-sm-10">
-					    <input type="text" class="form-control" id="search_movie" name="movie_title" placeholder="What movies are you looking for?">
-					</div>
-					<div class="col-sm-2">
-						<button type="submit" class="btn btn-default">Find Movies!</button>
-					</div>
-				</form>
-			</div>
-			<!-- Upcoming movies display section -->
+			<!-- Search movies display section -->
 			<div class="row">
 			<% for (var movie in movies) { %>
 				<div class="col-sm-3" style="height: 368px;">
-					<a href="/movies/<%= movies[movie].id %>">
+					<a href="/search_movies/<%= movies[movie].id %>">
 						<img src="https://image.tmdb.org/t/p/w185<%= movies[movie].image_url %>" alt="<%= movies[movie].title %>" style="width: 185px; height: 278px;">
 					</a>
 					<div><%= movies[movie].title %></div>
