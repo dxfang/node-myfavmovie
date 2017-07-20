@@ -10,6 +10,18 @@
 	</head>
 	<body>
 		<div class="container">
+		<% if (user.id) { %>
+			<div class="row">
+				<span>Hi, <%= user.name %>! | </span>
+				<form action="/destroy" method="POST">
+					<button type="submit" class="btn btn-default">Log out</button>
+				</form>
+			</div>
+		<% } else { %>
+			<div class="row">
+				<a href="/account">Register / Log in</a>
+			</div>
+		<% } %>
 			<div class="row">
 				<form class="form-horizontal" action="/search" method="post">
 					<div class="form-group col-sm-10">
@@ -19,6 +31,20 @@
 						<button type="submit" class="btn btn-default">Find Movies!</button>
 					</div>
 				</form>
+			</div>
+			<!-- My movies display section -->
+			<div class="row">
+			<% if (user.id) { %>
+			<% for (var movie in my_movies) { %>
+				<div class="col-sm-3" style="height: 368px;">
+					<a href="/my_movies/<%= my_movies[movie].id %>">
+						<img src="https://image.tmdb.org/t/p/w185<%= my_movies[movie].image_url %>" alt="<%= my_movies[movie].title %>" style="width: 185px; height: 278px;">
+					</a>
+					<div><%= my_movies[movie].title %></div>
+					<div><%= my_movies[movie].release_date %></div>
+				</div>
+			<% } %>
+			<% } %>
 			</div>
 			<!-- Upcoming movies display section -->
 			<div class="row">

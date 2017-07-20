@@ -18,6 +18,18 @@
 					<h2><%= movie.title %></h2>
 					<h3><%= movie.release_date %></h3>
 					<p><%= movie.description %></p>
+					<form action="/add_movie" method="POST">
+						<input type="hidden" name="id" value="<%= movie.id %>">
+						<input type="hidden" name="title" value="<%= movie.title %>">
+						<input type="hidden" name="release_date" value="<%= movie.release_date %>">
+						<input type="hidden" name="description" value="<%= movie.description %>">
+						<input type="hidden" name="image_url" value="<%= movie.image_url %>">
+						<% if (added) { %>
+							<button type="submit" class="btn btn-warning" formaction="/delete_movie">Remove from my favorite</button>
+						<% } else { %>
+							<button type="submit" class="btn btn-default">Add to Favorite</button>
+						<% } %>
+					</form>
 				</div>
 			</div>
 		</div>
