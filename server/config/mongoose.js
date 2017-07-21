@@ -3,9 +3,10 @@ var fs = require('fs');
 var path = require('path');
 var models_path = path.join(__dirname, '../models');
 var reg = new RegExp('.js$', 'i');
+var db = 'mongodb://dax:fang@ds145952.mlab.com:45952/web_devs';
 var local_db = 'mongodb://localhost/myfavmovie_db';
 
-mongoose.connect(local_db);
+mongoose.connect(db);
 
 mongoose.connection.on('connected', function() {
 	console.log('Mongoose default connection open to ' + local_db);
