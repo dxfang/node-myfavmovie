@@ -4,14 +4,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>My FavMovie</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	    	<!-- <link rel="stylesheet" href="style.css"> -->
+	    <link rel="stylesheet" href="style.css">
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4 col-sm-offset-1 well">
+					<h2 class="account_title">Register</h2>
 					<form action="/account/register" method="POST">
 						<div class="form-group">
 							<label for="username">User Name</label>
@@ -21,10 +22,11 @@
 							<label for="password">Password</label>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
-						<button type="submit" class="btn btn-default">Register</button>
+						<button type="submit" class="btn btn-info account_button">Register</button>
 					</form>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-4 col-sm-offset-2 well">
+					<h2 class="account_title">Log In</h2>
 					<form action="/account/login" method="POST">
 						<div class="form-group">
 							<label for="username">User Name</label>
@@ -34,7 +36,7 @@
 							<label for="password">Password</label>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
-						<button type="submit" class="btn btn-default">Log In</button>
+						<button type="submit" class="btn btn-info account_button">Log In</button>
 					</form>
 				</div>
 			</div>

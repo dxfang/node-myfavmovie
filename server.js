@@ -16,7 +16,9 @@ var users = require('./server/controllers/users.js');
 var movies = require('./server/controllers/movies.js');
 // End database setting
 
-var key = '';
+var key = 'c3d1e8df081160561033afe669d2f3ca';
+
+app.use(express.static(__dirname));
 
 app.set('view engine', 'ejs');
 
@@ -44,14 +46,17 @@ request(options_upcoming, function(err, res, body) {
 
 	var movies = JSON.parse(body);
 	for (var i = 0; i < movies.results.length; i++) {
-		upcoming_movies[i] = {
+		upcoming_movies.push({
 			id: movies.results[i].id,
 			title: movies.results[i].title,
 			release_date: movies.results[i].release_date,
 			description: movies.results[i].overview,
 			image_url: movies.results[i].poster_path
-		};
+		});
 	};
+	upcoming_movies.sort(function(a, b) {
+		return Date.parse(a.release_date) - Date.parse(b.release_date);
+	});
 });
 
 app.get('/account', function(req, res) {
@@ -135,7 +140,7 @@ app.get('/movies/:id', function(req, res) {
 			added = true;
 		}	
 	}
-	res.render('movie', {movie: chosen_movie, added: added});
+	res.render('movie', {user: req.session, movie: chosen_movie, added: added});
 });
 
 app.get('/search_movies/:id', function(req, res) {
@@ -149,15 +154,14 @@ app.get('/search_movies/:id', function(req, res) {
 			added = true;
 		}
 	}
-	res.render('movie', {movie: chosen_movie, added: added});
+	res.render('movie', {user: req.session, movie: chosen_movie, added: added});
 });
 
 app.get('/my_movies/:id', function(req, res) {
 	var chosen_movie = my_movies.filter(function(elem) {
 		return elem.id == req.params.id;
 	})[0];
-	console.log(chosen_movie)
-	res.render('movie', {movie: chosen_movie, added: true});
+	res.render('movie', {user: req.session, movie: chosen_movie, added: true});
 });
 
 var routes_setter = require('./server/config/routes.js');

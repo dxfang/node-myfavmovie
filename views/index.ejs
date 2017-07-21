@@ -4,59 +4,98 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>My FavMovie</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    	<!-- <link rel="stylesheet" href="style.css"> -->
+    	<link rel="stylesheet" href="style.css">
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="container">
-		<% if (user.id) { %>
-			<div class="row">
-				<span>Hi, <%= user.name %>! | </span>
-				<form action="/destroy" method="POST">
-					<button type="submit" class="btn btn-default">Log out</button>
-				</form>
-			</div>
-		<% } else { %>
-			<div class="row">
-				<a href="/account">Register / Log in</a>
-			</div>
-		<% } %>
-			<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Brand</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="navbar-collapse">
+						<form class="navbar-form navbar-left" action="/search" method="post">
+							<div class="form-group">
+								<input type="text" class="form-control" id="search_movie" name="movie_title" placeholder="Find your movie here">
+							</div>
+							<button type="submit" class="btn btn-success">Find Movies!</button>
+						</form>
+						<ul class="nav navbar-nav navbar-right">
+							<% if (user.id) { %>
+							<li>
+								<span class="navbar-text">Welcome <%= user.name %>!</span>
+							</li>
+							<li>
+								<form action="/destroy" method="POST">
+									<button type="submit" class="btn btn-inverse navbar-btn">Log Out</button>
+								</form>
+							</li>
+							<% } else { %>
+							<li><a href="/account">Register | Log In</a></li>
+							<% } %>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+
+			<!-- <div class="row">
 				<form class="form-horizontal" action="/search" method="post">
-					<div class="form-group col-sm-10">
+					<div class="form-group col-sm-11">
 					    <input type="text" class="form-control" id="search_movie" name="movie_title" placeholder="What movies are you looking for?">
 					</div>
-					<div class="col-sm-2">
-						<button type="submit" class="btn btn-default">Find Movies!</button>
+					<div class="col-sm-1">
+						<button type="submit" class="btn btn-success">Find Movies!</button>
 					</div>
 				</form>
-			</div>
+			</div> -->
 			<!-- My movies display section -->
-			<div class="row">
-			<% if (user.id) { %>
-			<% for (var movie in my_movies) { %>
-				<div class="col-sm-3" style="height: 368px;">
+			
+			<% if (user.id && my_movies[0]) { %>
+			<div class="row well">
+				<h3 class="movie_display_title">My Favorite</h3>
+				<% for (var movie in my_movies) { %>
+				<div class="col-sm-3 movie_block" style="height: 368px;">
 					<a href="/my_movies/<%= my_movies[movie].id %>">
 						<img src="https://image.tmdb.org/t/p/w185<%= my_movies[movie].image_url %>" alt="<%= my_movies[movie].title %>" style="width: 185px; height: 278px;">
 					</a>
-					<div><%= my_movies[movie].title %></div>
-					<div><%= my_movies[movie].release_date %></div>
+					<div class="movie_block_title">
+						<strong><%= my_movies[movie].title %></strong>
+					</div>
+					<div class="movie_block_date">
+						<em><%= my_movies[movie].release_date %></em>
+					</div>
 				</div>
-			<% } %>
-			<% } %>
+				<% } %>
 			</div>
+			<% } %>
+			
 			<!-- Upcoming movies display section -->
-			<div class="row">
-			<% for (var movie in movies) { %>
-				<div class="col-sm-3" style="height: 368px;">
+			<div class="row well">
+				<h3 class="movie_display_title">Upcoming Movies</h3>
+				<% for (var movie in movies) { %>
+				<div class="col-sm-3 movie_block" style="height: 368px;">
 					<a href="/movies/<%= movies[movie].id %>">
 						<img src="https://image.tmdb.org/t/p/w185<%= movies[movie].image_url %>" alt="<%= movies[movie].title %>" style="width: 185px; height: 278px;">
 					</a>
-					<div><%= movies[movie].title %></div>
-					<div><%= movies[movie].release_date %></div>
+					<div class="movie_block_title">
+						<strong><%= movies[movie].title %></strong>
+					</div>
+					<div class="date">
+						<em><%= movies[movie].release_date %></em>
+					</div>
 				</div>
-			<% } %>
+				<% } %>
 			</div>
 		</div>
 	</body>

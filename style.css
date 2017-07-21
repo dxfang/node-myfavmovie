@@ -1,0 +1,31 @@
+body {
+	/*background-image: url("b5.jpg");*/
+	/*background-size: 30%;*/
+	background: linear-gradient(to right, rgba(64,64,64,1), rgba(64,64,64,0.5), rgba(64,64,64,1));
+
+}
+
+.container {
+	margin-top: 20px;
+}
+
+.account_title {
+	margin: 20px 0px;
+}
+
+.account_button {
+	float: right;
+}
+
+.movie_block, .movie_block_title, .movie_block_date {
+	text-align: center;
+}
+
+.movie_display_title {
+	margin: 0px 0px 25px 50px;
+	/*margin-bottom: 20px;*/
+}
+
+.well {
+	background-color: rgba(245, 245, 245, 0.3);
+}
