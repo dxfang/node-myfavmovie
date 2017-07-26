@@ -16,13 +16,13 @@ var users = require('./server/controllers/users.js');
 var movies = require('./server/controllers/movies.js');
 // End database setting
 
-var key = 'c3d1e8df081160561033afe669d2f3ca';
+var key = '';
 
 app.use(express.static(__dirname));
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var options_upcoming = {
@@ -60,7 +60,7 @@ request(options_upcoming, function(err, res, body) {
 });
 
 app.get('/account', function(req, res) {
-	res.render('account');
+	res.render('account', {message: {}});
 });
 
 app.post('/destroy', function(req, res) {
@@ -74,6 +74,7 @@ app.get('/', function(req, res) {
 });
 var Movie = mongoose.model('Movie');
 app.get('/dashboard', function(req, res) {
+	search_movies = [];
 	my_movies = [];
 	if (req.session.id) {
 		Movie.find({_user: req.session.id}, function(err, data) {
@@ -105,7 +106,7 @@ app.post('/search', function(req, res) {
 		qs: {
 			include_adult: 'false',
 			page: '1',
-			query: req.body.movie_title,
+			query: req.body.movie_title + ' ',
 			language: 'en-US',
 			api_key: key
 		},

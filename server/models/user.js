@@ -4,14 +4,12 @@ var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
 	name: {
 		type: String,
-		required: true,
-		min: 2
+		minlength: 2
 	},
 
 	password: {
 		type: String,
-		required: true,
-		min: 6
+		minlength: 6
 	}
 }, {
 	timestamps: true

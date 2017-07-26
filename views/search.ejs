@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Search</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    	<link rel="stylesheet" href="style.css">
+    	<link rel="stylesheet" href="/style.css">
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
@@ -22,18 +22,23 @@
 
 			<!-- Search movies display section -->
 			<div class="row well">
-			<% for (var movie in movies) { %>
-				<div class="col-sm-3 movie_block" style="height: 368px;">
-					<a href="/search_movies/<%= movies[movie].id %>">
-						<img src="https://image.tmdb.org/t/p/w185<%= movies[movie].image_url %>" alt="<%= movies[movie].title %>" style="width: 185px; height: 278px;">
-					</a>
-					<div class="movie_block_title">
-						<strong><%= movies[movie].title %></strong>
+			<% if (movies[0]) { %>
+				<% for (var movie in movies) { %>
+					<div class="col-sm-3 movie_block" style="height: 368px;">
+						<a href="/search_movies/<%= movies[movie].id %>">
+							<img src="https://image.tmdb.org/t/p/w185<%= movies[movie].image_url %>" alt="<%= movies[movie].title %>" style="width: 185px; height: 278px;">
+						</a>
+						<div class="movie_block_title">
+							<strong><%= movies[movie].title %></strong>
+						</div>
+						<div class="date">
+							<em><%= movies[movie].release_date %></em>
+						</div>
 					</div>
-					<div class="date">
-						<em><%= movies[movie].release_date %></em>
-					</div>
-				</div>
+				<% } %>
+			<% } else { %>
+				<h2>Sorry,</h2>
+				<p>We didn't find any results matching your choice.</p>
 			<% } %>
 			</div>
 		</div>

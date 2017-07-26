@@ -4,7 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>My FavMovie</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="style.css">
+	    <link rel="stylesheet" href="/style.css">
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
@@ -15,11 +15,19 @@
 					<h2 class="account_title">Register</h2>
 					<form action="/account/register" method="POST">
 						<div class="form-group">
-							<label for="username">User Name</label>
+							<label for="username">Username</label>
+							<% if (message.name_taken_message) { %>
+							<span><%= message.name_taken_message %></span>
+							<% } else if (message.name_length_message) { %>
+							<span><%= message.name_length_message %></span>
+							<% } %>
 							<input type="text" class="form-control" id="username" name="username">
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
+							<% if (message.password_length_message) { %>
+							<span><%= message.password_length_message %></span>
+							<% } %>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="btn btn-info account_button">Register</button>
@@ -29,11 +37,17 @@
 					<h2 class="account_title">Log In</h2>
 					<form action="/account/login" method="POST">
 						<div class="form-group">
-							<label for="username">User Name</label>
+							<label for="username">Username</label>
+							<% if (message.user_not_exist_message) { %>
+							<span><%= message.user_not_exist_message %></span>
+							<% } %>
 							<input type="text" class="form-control" id="username" name="username">
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
+							<% if (message.password_incorrect_message) { %>
+							<span><%= message.password_incorrect_message %></span>
+							<% } %>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="btn btn-info account_button">Log In</button>

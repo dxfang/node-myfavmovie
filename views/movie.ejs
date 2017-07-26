@@ -4,18 +4,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>My FavMovie</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/style.css">
 	    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    	</head>
+    </head>
 	<body>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
-					<img src="https://image.tmdb.org/t/p/w300/<%= movie.image_url %>" alt="<%= movie.title %>">
+					<img src="https://image.tmdb.org/t/p/w300/<%= movie.image_url %>" alt="<%= movie.title %>" class="img-rounded">
 				</div>
-				<div class="col-sm-8">
+				<div class="col-sm-8 well">
 					<h2><%= movie.title %></h2>
-					<h3><%= movie.release_date %></h3>
+					<h4><em><%= movie.release_date %></em></h4>
 					<p><%= movie.description %></p>
 					<form action="/add_movie" method="POST">
 						<input type="hidden" name="id" value="<%= movie.id %>">
@@ -27,9 +28,10 @@
 						<% } else if (added) { %>
 							<button type="submit" class="btn btn-warning" formaction="/delete_movie">Remove from my favorite</button>
 						<% } else { %>
-							<button type="submit" class="btn btn-default">Add to Favorite</button>
+							<button type="submit" class="btn btn-info">Add to Favorite</button>
 						<% } %>
 					</form>
+					<br>
 					<a href="/">Back to main page</a>
 				</div>
 			</div>
