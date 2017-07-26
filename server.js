@@ -16,7 +16,7 @@ var users = require('./server/controllers/users.js');
 var movies = require('./server/controllers/movies.js');
 // End database setting
 
-var key = '';
+var key = 'c3d1e8df081160561033afe669d2f3ca';
 
 app.use(express.static(__dirname));
 

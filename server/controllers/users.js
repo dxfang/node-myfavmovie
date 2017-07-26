@@ -45,7 +45,7 @@ function UsersController() {
 				console.log('User does not exist');
 				var message = '*User does not exist.';
 				res.render('account', {message: {user_not_exist_message: message}});
-			} else if (data && data.password == req.body.password) {
+			} else if (data && data.validPassword(req.body.password)) {
 				console.log('Login successful');
 				req.session.id = data._id;
 				req.session.name = data.name;
