@@ -27,3 +27,7 @@ body {
 .well {
 	background-color: rgba(245, 245, 245, 0.3);
 }
+
+#account_return_home {
+	padding-top: 100px;
+}

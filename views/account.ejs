@@ -11,48 +11,56 @@
 	<body>
 		<div class="container">
 			<div class="row">
+				<!-- Register Section -->
 				<div class="col-sm-4 col-sm-offset-1 well">
 					<h2 class="account_title">Register</h2>
 					<form action="/account/register" method="POST">
 						<div class="form-group">
 							<label for="username">Username</label>
 							<% if (message.name_taken_message) { %>
-							<span><%= message.name_taken_message %></span>
+							<span style="color:crimson"><%= message.name_taken_message %></span>
 							<% } else if (message.name_length_message) { %>
-							<span><%= message.name_length_message %></span>
+							<span style="color:crimson"><%= message.name_length_message %></span>
 							<% } %>
 							<input type="text" class="form-control" id="username" name="username">
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
 							<% if (message.password_length_message) { %>
-							<span><%= message.password_length_message %></span>
+							<span style="color:crimson"><%= message.password_length_message %></span>
 							<% } %>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="btn btn-info account_button">Register</button>
 					</form>
 				</div>
+				<!-- Register Section end -->
+
+				<!-- Login Section -->
 				<div class="col-sm-4 col-sm-offset-2 well">
 					<h2 class="account_title">Log In</h2>
 					<form action="/account/login" method="POST">
 						<div class="form-group">
 							<label for="username">Username</label>
 							<% if (message.user_not_exist_message) { %>
-							<span><%= message.user_not_exist_message %></span>
+							<span style="color:crimson"><%= message.user_not_exist_message %></span>
 							<% } %>
 							<input type="text" class="form-control" id="username" name="username">
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
 							<% if (message.password_incorrect_message) { %>
-							<span><%= message.password_incorrect_message %></span>
+							<span style="color:crimson"><%= message.password_incorrect_message %></span>
 							<% } %>
 							<input type="password" class="form-control" id="password" name="password">
 						</div>
 						<button type="submit" class="btn btn-info account_button">Log In</button>
 					</form>
 				</div>
+				<!-- Login Section End -->
+			</div>
+			<div class="row">
+				<a id="account_return_home" class="col-sm-2 col-sm-offset-5 text-center" href="/">Return to Dashboard</a>
 			</div>
 		</div>
 	</body>

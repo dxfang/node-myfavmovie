@@ -16,7 +16,7 @@ var users = require('./server/controllers/users.js');
 var movies = require('./server/controllers/movies.js');
 // End database setting
 
-var key = 'c3d1e8df081160561033afe669d2f3ca';
+var key = process.env.TMDB_KEY;
 
 app.use(express.static(__dirname));
 
@@ -90,6 +90,9 @@ app.get('/dashboard', function(req, res) {
 						image_url: data[i].img_url
 					};
 				};
+				my_movies.sort(function(a, b) {
+					return Date.parse(a.release_date) - Date.parse(b.release_date);
+				});
 				res.render('index', {user: req.session, movies: upcoming_movies, my_movies: my_movies});
 			};
 		});
